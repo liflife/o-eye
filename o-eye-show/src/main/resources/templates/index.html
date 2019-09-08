@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- 引入 ECharts 文件 -->
+    <script src="/echarts/echarts.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'XX订单销量'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["订单量", "实际订单量", "待支付", "已支付", "已取消", "已入库", "已拣货", "已出库", "已配送", "已签收"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    <script>
+        function queryDate() {
+            $.ajax(
+                {
+                    url: "/queryData",
+                    data: {"ts": ""},
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    async: false,
+                    success: function (data) {
+                        myChart.setOption({
+                            xAxis: {
+                                data: date
+                            },
+                            series: [{
+                                data: randomData
+                            }]
+                        });
+                        myChart.setOption(option);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+        }
+
+
+        var delaytime = 5000
+        setInterval("queryDate();", delaytime);
+    </script>
+
+</head>
+<body>
+
+<div id="main" style="width: 600px;height:400px;"></div>
+
+</body>
+</html>
