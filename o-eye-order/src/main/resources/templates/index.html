@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- 引入 ECharts 文件 -->
+    <script src="/static/echarts/echarts.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+</head>
+<body>
+订单销售量
+<div id="orderTotal" style="width: auto;height:600px;"></div>
+<div id="orderAmount" style="width: auto;height:600px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var orderTotal = echarts.init(document.getElementById('orderTotal'));
+        var orderAmount = echarts.init(document.getElementById('orderAmount'));
+        // 指定图表的配置项和数据
+        var optionOrderTotal = {
+            title: {
+                text: '订单销量'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["订单量", "实际订单量", "待支付", "已支付", "已取消", "已入库", "已拣货", "已出库", "已配送", "已签收"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [1, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+            }]
+        };
+        // 指定图表的配置项和数据
+        var optionOrderAmount = {
+            title: {
+                text: '订单销金额'
+            },
+            tooltip: {},
+            legend: {
+                data: ['金额']
+            },
+            xAxis: {
+                data: ["订单金额", "实际订单金额"]
+            },
+            yAxis: {},
+            series: [{
+                name: '金额',
+                type: 'bar',
+                data: [0, 0]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        orderTotal.setOption(optionOrderTotal);
+        orderAmount.setOption(optionOrderAmount);
+    </script>
+    <script>
+        function queryDate() {
+            $.ajax(
+                {
+                    url: "/queryData",
+                    data: {"ts": ""},
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    async: false,
+                    success: function (data) {
+                       var orderTotalData=[data.orderTotal,
+                           data.orderTotalReality,
+                           data.orderStatusTotal,
+                           data.orderStatusAlready,
+                           data.orderStatusCancel,
+                           data.orderTotalStatusInhouse,
+                           data.orderStatusPick,
+                           data.orderStatusOuthouse,
+                           data.orderStatusSend,
+                           data.orderStatusSign];
+                        var orderAmountData=[
+                            data.orderAmount,
+                            data.orderAmountReality];
+                        debugger
+                        orderTotal.setOption({
+                            series: [{
+                                data: orderTotalData
+                            }]
+                        });
+                        orderAmount.setOption({
+                            series: [{
+                                data: orderAmountData
+                            }]
+                        });
+                    },
+                    error: function () {
+//                        alert("error");
+                        console.log("error")
+                    }
+                });
+        }
+        var delaytime = 1000
+        setInterval("queryDate();", delaytime);
+    </script>
+</body>
+</html>

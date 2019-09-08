@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="mvcVelocityEngine" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/static/" /><!-- 模板存放的路径 -->
+        <!--原文有个加载配置文件的配置，我自己测下来没用-->
+        <property name="velocityProperties"><!--这个不加，加载出来的页面是乱码-->
+            <props>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="false" />
+        <property name="prefix" value="/static/" /><!-- 视图文件的前缀，即存放的路径 -->
+        <property name="suffix" value=".vm" /><!-- 视图文件的后缀名 -->
+        <property name="dateToolAttribute" value="date" /><!--日期函数名称-->
+        <property name="numberToolAttribute" value="number" /><!--数字函数名称-->
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持-->
+        <property name="exposeRequestAttributes" value="true" /><!--是否开放request属性-->
+        <property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
+        <!--<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>--><!--这个没用到,vm页面内自定义的函数也可以使用-->
+    </bean>
+</beans>

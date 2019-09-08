@@ -1,0 +1,4 @@
+com\lxf\eye\common\domain\BeanUtil.class
+com\lxf\eye\common\domain\OrderStatusEnum.class
+com\lxf\eye\common\domain\OrderIndo.class
+com\lxf\eye\common\domain\CanalMysqlEntry.class

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<toolbox>
+    <tool>
+        <key>stringUtils</key>
+        <scope>request</scope>
+        <class>org.apache.commons.lang.StringUtils</class>
+    </tool>
+    <tool>
+        <key>stringEscapeUtils</key>
+        <scope>request</scope>
+        <class>org.apache.commons.lang.StringEscapeUtils</class>
+    </tool>
+    <tool>
+        <key>dateUtils</key>
+        <scope>request</scope>
+        <class>org.apache.commons.lang.time.DateUtils</class>
+    </tool>
+    <tool>
+        <key>date</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.DateTool</class>
+    </tool>
+</toolbox>

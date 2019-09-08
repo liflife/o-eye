@@ -28,32 +28,41 @@ public class IndexService {
          * 订单金额  eye.show.order.amount
          * 实际订单金额  eye.show.order.amount.reality
          */
-        String orderTotal = (String)redisUtil.get("eye.show.order.total");
-        String orderTotalReality = (String)redisUtil.get("eye.show.order.total.reality");
-        String orderStatusTotal = (String)redisUtil.get("eye.show.order.total.status.wait");
-        String orderStatusAlready = (String)redisUtil.get("eye.show.order.total.status.already");
-        String orderStatusCancel = (String)redisUtil.get("eye.show.order.total.status.cancel");
-        String orderTotalStatusInhouse = (String)redisUtil.get("eye.show.order.total.status.inhouse");
-        String orderStatusPick = (String)redisUtil.get("eye.show.order.total.status.pick");
-        String orderStatusOuthouse = (String)redisUtil.get("eye.show.order.total.status.outhouse");
-        String orderStatusSend = (String)redisUtil.get("eye.show.order.total.status.send");
-        String orderStatusSign = (String)redisUtil.get("eye.show.order.total.status.sign");
+        Object orderTotal = redisUtil.get("eye.show.order.total");
+        Object orderTotalReality =redisUtil.get("eye.show.order.total.reality");
+        Object orderStatusTotal =redisUtil.get("eye.show.order.total.status.wait");
+        Object orderStatusAlready = redisUtil.get("eye.show.order.total.status.already");
+        Object orderStatusCancel = redisUtil.get("eye.show.order.total.status.cancel");
+        Object orderTotalStatusInhouse =redisUtil.get("eye.show.order.total.status.inhouse");
+        Object orderStatusPick =redisUtil.get("eye.show.order.total.status.pick");
+        Object orderStatusOuthouse =redisUtil.get("eye.show.order.total.status.outhouse");
+        Object orderStatusSend =redisUtil.get("eye.show.order.total.status.send");
+        Object orderStatusSign = redisUtil.get("eye.show.order.total.status.sign");
+
+
 
         String orderAmount = (String)redisUtil.get("eye.show.order.amount");
         String orderAmountReality = (String)redisUtil.get("eye.show.order.amount.reality");
-        json.put("orderTotal",orderTotal);
-        json.put("orderTotalReality",orderTotalReality);
-        json.put("orderStatusTotal",orderStatusTotal);
-        json.put("orderStatusAlready",orderStatusAlready);
-        json.put("orderStatusCancel",orderStatusCancel);
-        json.put("orderTotalStatusInhouse",orderTotalStatusInhouse);
-        json.put("orderStatusPick",orderStatusPick);
-        json.put("orderStatusOuthouse",orderStatusOuthouse);
-        json.put("orderStatusSend",orderStatusSend);
-        json.put("orderStatusSign",orderStatusSign);
-        json.put("orderAmount",orderAmount);
-        json.put("orderAmountReality",orderAmountReality);
+        json.put("orderTotal",tranInter(orderTotal));
+        json.put("orderTotalReality",tranInter(orderTotalReality));
+        json.put("orderStatusTotal",tranInter(orderStatusTotal));
+        json.put("orderStatusAlready",tranInter(orderStatusAlready));
+        json.put("orderStatusCancel",tranInter(orderStatusCancel));
+        json.put("orderTotalStatusInhouse",tranInter(orderTotalStatusInhouse));
+        json.put("orderStatusPick",tranInter(orderStatusPick));
+        json.put("orderStatusOuthouse",tranInter(orderStatusOuthouse));
+        json.put("orderStatusSend",tranInter(orderStatusSend));
+        json.put("orderStatusSign",tranInter(orderStatusSign));
+        json.put("orderAmount",tranInter(orderAmount));
+        json.put("orderAmountReality",tranInter(orderAmountReality));
         return json;
+    }
+    private Integer tranInter(Object object){
+        if(object==null){
+            return 0;
+        }else {
+            return Integer.parseInt(object.toString());
+        }
     }
 
 }

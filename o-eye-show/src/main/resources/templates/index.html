@@ -6,13 +6,21 @@
     <!-- 引入 ECharts 文件 -->
     <script src="/echarts/echarts.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+</head>
+<body>
+订单销售量
+<div id="orderTotal" style="width: auto;height:600px;"></div>
+<div id="orderAmount" style="width: auto;height:600px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        var orderTotal = echarts.init(document.getElementById('orderTotal'));
+        var orderAmount = echarts.init(document.getElementById('orderAmount'));
         // 指定图表的配置项和数据
-        var option = {
+        var optionOrderTotal = {
             title: {
-                text: 'XX订单销量'
+                text: '订单销量'
             },
             tooltip: {},
             legend: {
@@ -25,11 +33,31 @@
             series: [{
                 name: '销量',
                 type: 'bar',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                data: [1, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+            }]
+        };
+        // 指定图表的配置项和数据
+        var optionOrderAmount = {
+            title: {
+                text: '订单销金额'
+            },
+            tooltip: {},
+            legend: {
+                data: ['金额']
+            },
+            xAxis: {
+                data: ["订单金额", "实际订单金额"]
+            },
+            yAxis: {},
+            series: [{
+                name: '金额',
+                type: 'bar',
+                data: [0, 0]
             }]
         };
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        orderTotal.setOption(optionOrderTotal);
+        orderAmount.setOption(optionOrderAmount);
     </script>
     <script>
         function queryDate() {
@@ -42,31 +70,39 @@
                     contentType: "application/json;charset=utf-8",
                     async: false,
                     success: function (data) {
-                        myChart.setOption({
-                            xAxis: {
-                                data: date
-                            },
+                       var orderTotalData=[data.orderTotal,
+                           data.orderTotalReality,
+                           data.orderStatusTotal,
+                           data.orderStatusAlready,
+                           data.orderStatusCancel,
+                           data.orderTotalStatusInhouse,
+                           data.orderStatusPick,
+                           data.orderStatusOuthouse,
+                           data.orderStatusSend,
+                           data.orderStatusSign];
+                        var orderAmountData=[
+                            data.orderAmount,
+                            data.orderAmountReality];
+                        debugger
+                        orderTotal.setOption({
                             series: [{
-                                data: randomData
+                                data: orderTotalData
                             }]
                         });
-                        myChart.setOption(option);
+                        orderAmount.setOption({
+                            series: [{
+                                data: orderAmountData
+                            }]
+                        });
                     },
                     error: function () {
-                        alert("error");
+//                        alert("error");
+                        console.log("error")
                     }
                 });
         }
-
-
-        var delaytime = 5000
+        var delaytime = 1000
         setInterval("queryDate();", delaytime);
     </script>
-
-</head>
-<body>
-
-<div id="main" style="width: 600px;height:400px;"></div>
-
 </body>
 </html>
