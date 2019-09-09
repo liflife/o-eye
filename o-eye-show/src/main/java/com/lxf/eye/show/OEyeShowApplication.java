@@ -17,9 +17,5 @@ public class OEyeShowApplication {
     public static void main(String[] args) {
         SpringApplication.run(OEyeShowApplication.class, args);
     }
-//    @Bean
-//    public RedisTemplate getRedisTemplate(){
-//        RedisTemplate redisTemplate=new RedisTemplate();
-//        return redisTemplate;
-//    }
+
 }

@@ -39,8 +39,6 @@ public class IndexService {
         Object orderStatusSend =redisUtil.get("eye.show.order.total.status.send");
         Object orderStatusSign = redisUtil.get("eye.show.order.total.status.sign");
 
-
-
         String orderAmount = (String)redisUtil.get("eye.show.order.amount");
         String orderAmountReality = (String)redisUtil.get("eye.show.order.amount.reality");
         json.put("orderTotal",tranInter(orderTotal));
