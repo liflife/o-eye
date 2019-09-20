@@ -27,5 +27,6 @@ target/
 /.nb-gradle/
 build/
 o-eye/.idea
+./.idea/
 ### VS Code ###
 .vscode/

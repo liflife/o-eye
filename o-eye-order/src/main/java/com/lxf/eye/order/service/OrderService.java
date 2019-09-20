@@ -22,7 +22,16 @@ public class OrderService {
     public int addOrder(OrderInfo order) {
         return orderMapper.insert(order);
     }
-
+    /**
+     * 查询全部订单
+     *
+     * @return
+     */
+    public OrderInfo selectByPrimaryKey(String orderNo) {
+        Example example = new Example(OrderInfo.class);
+        example.createCriteria().andEqualTo("orderNo", orderNo);
+        return orderMapper.selectOneByExample(example);
+    }
     /**
      * 查询全部订单
      *

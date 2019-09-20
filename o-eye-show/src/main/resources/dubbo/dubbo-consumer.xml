@@ -6,16 +6,11 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd  
     http://code.alibabatech.com/schema/dubbo  
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-
-    <!-- 提供方应用信息，用于计算依赖关系 -->
+    
     <dubbo:application name="${dubbo.application.name}"/>
 
-    <!-- 注册中心暴露服务地址 -->
-    <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address1},${dubbo.registry.address2},${dubbo.registry.address3}"/>
+    <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/>
 
-    <!-- 暴露服务 -->
-    <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}"/>
-
-    <dubbo:service interface="com"
-                   ref="userServiceImpl" retries="0" timeout="6000" loadbalance="random"/>
+    <dubbo:reference interface="com.lxf.eye.common.domain.api.OrderServiceDubbo"
+                   id="orderServiceDubbo" retries="0" timeout="6000"/>
 </beans>

@@ -3,11 +3,12 @@ package com.lxf.eye.common.domain;
 import com.alibaba.fastjson.JSON;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Table(name = "order_info")
-public class OrderInfo {
+public class OrderInfo implements Serializable{
     private Integer id; //
     private String type; //
     private String category; //
