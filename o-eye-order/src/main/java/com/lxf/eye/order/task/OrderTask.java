@@ -3,10 +3,9 @@ package com.lxf.eye.order.task;
 import com.lxf.eye.common.domain.*;
 import com.lxf.eye.order.service.OrderService;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.OrderUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -74,7 +73,7 @@ public class OrderTask {
             default : //可选
                 newstatus = "";
         }
-        if(CollectionUtils.isNotEmpty(ids) && StringUtils.isNoneEmpty(newstatus)){
+        if(CollectionUtils.isNotEmpty(ids) && StringUtils.isNotEmpty(newstatus)){
             logger.info("update order old status:{},new status:{}",status.name(),newstatus);
             orderService.updateOrders(ids, newstatus);
         }

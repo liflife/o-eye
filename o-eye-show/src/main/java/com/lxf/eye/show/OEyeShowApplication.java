@@ -4,14 +4,17 @@ package com.lxf.eye.show;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.lxf.eye.show.mapper")
-@ComponentScan({"com.lxf.eye.common.service"})
+@ComponentScan({"com.lxf.eye.common.service","com.lxf.eye.show"})
 @EnableScheduling
+@PropertySource("conf.properties")
+@PropertySource("job.properties")
 public class OEyeShowApplication {
 
     public static void main(String[] args) {
