@@ -12,5 +12,5 @@
     <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/>
 
     <dubbo:reference interface="com.lxf.eye.common.domain.api.OrderServiceDubbo"
-                   id="orderServiceDubbo" retries="0" timeout="6000"/>
+                   id="orderServiceDubbo" retries="0" timeout="6000" check="false"/>
 </beans>

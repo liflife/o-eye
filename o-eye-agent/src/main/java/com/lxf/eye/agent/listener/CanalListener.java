@@ -32,7 +32,7 @@ public class CanalListener {
     @PostConstruct
     public void listen() {
         canalConnector.connect();
-        canalConnector.subscribe(".*\\..*");
+        canalConnector.subscribe("eye_order\\..*");
         canalConnector.rollback();
         while (true) {
             logger.info("canal Listen.......");

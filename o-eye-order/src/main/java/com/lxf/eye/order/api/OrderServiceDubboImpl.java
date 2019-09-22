@@ -2,6 +2,7 @@ package com.lxf.eye.order.api;
 
 import com.lxf.eye.common.domain.OrderInfo;
 import com.lxf.eye.common.domain.api.OrderServiceDubbo;
+import com.lxf.eye.common.service.EyeRedisTemplate;
 import com.lxf.eye.order.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,8 @@ public class OrderServiceDubboImpl implements OrderServiceDubbo {
 
     @Autowired
     private OrderService orderService;
-    
+    @Autowired
+    private EyeRedisTemplate eyeRedisTemplate;
 
     /**
      * 增加调用方基本信息
@@ -23,6 +25,7 @@ public class OrderServiceDubboImpl implements OrderServiceDubbo {
      */
     public OrderInfo selectByPrimaryKey(String orderNo) {
         logger.info(orderNo);
+        eyeRedisTemplate.incr("selectByPrimaryKey",1l);
         return orderService.selectByPrimaryKey(orderNo);
     }
 }

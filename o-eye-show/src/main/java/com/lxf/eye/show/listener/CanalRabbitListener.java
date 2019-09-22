@@ -1,27 +1,20 @@
 package com.lxf.eye.show.listener;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.lxf.eye.common.domain.CommonUtil;
 import com.lxf.eye.common.domain.OrderInfo;
 import com.lxf.eye.common.domain.OrderStatusEnum;
 import com.lxf.eye.common.domain.RabbitMqQueueConfig;
-import com.lxf.eye.show.common.RedisUtil;
+import com.lxf.eye.common.service.EyeRedisTemplate;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.Date;
 
 @Component
@@ -29,7 +22,7 @@ import java.util.Date;
 public class CanalRabbitListener {
     private static final Logger logger = LoggerFactory.getLogger(CanalRabbitListener.class);
     @Autowired
-    private RedisUtil redisUtil;
+    private EyeRedisTemplate eyeRedisTemplate;
 
     @RabbitHandler
     public void process(String msgBody, Channel channel, Message message) throws IOException {
@@ -95,11 +88,11 @@ public class CanalRabbitListener {
      * @param orderInfo
      */
     public void statisticsOrderINSERT(OrderInfo orderInfo) {
-        redisUtil.incr("eye.show.order.total", 1);
-        redisUtil.incr("eye.show.order.total.reality", 1);
-        redisUtil.incr("eye.show.order.total.status.wait", 1);
-        redisUtil.incr("eye.show.order.amount", orderInfo.getActualAmount().longValue());
-        redisUtil.incr("eye.show.order.amount.reality", orderInfo.getActualAmount().longValue());
+        eyeRedisTemplate.incr("eye.show.order.total", 1);
+        eyeRedisTemplate.incr("eye.show.order.total.reality", 1);
+        eyeRedisTemplate.incr("eye.show.order.total.status.wait", 1);
+        eyeRedisTemplate.incr("eye.show.order.amount", orderInfo.getActualAmount().longValue());
+        eyeRedisTemplate.incr("eye.show.order.amount.reality", orderInfo.getActualAmount().longValue());
     }
 
     /**
@@ -114,29 +107,29 @@ public class CanalRabbitListener {
         OrderStatusEnum orderStatusEnum = OrderStatusEnum.getOrderStatusEnum(newStatus);
         switch (orderStatusEnum) {
             case WAIT:
-                redisUtil.incr("eye.show.order.total", 1);
+                eyeRedisTemplate.incr("eye.show.order.total", 1);
                 break;
             case ALREADY:
-                redisUtil.incr("eye.show.order.total.status.already", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.already", 1);
                 break;
             case INHOUSE:
-                redisUtil.incr("eye.show.order.total.status.inhouse", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.inhouse", 1);
                 break;
             case PICK:
-                redisUtil.incr("eye.show.order.total.status.pick", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.pick", 1);
                 break;
             case OUTHOUSE:
-                redisUtil.incr("eye.show.order.total.status.outhouse", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.outhouse", 1);
                 break;
             case SEND:
-                redisUtil.incr("eye.show.order.total.status.send", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.send", 1);
                 break;
             case SIGN:
-                redisUtil.incr("eye.show.order.total.status.sign", 1);
+                eyeRedisTemplate.incr("eye.show.order.total.status.sign", 1);
                 break;
             case CANCEL:
-                redisUtil.decr("eye.show.order.total.reality", 1);
-                redisUtil.incr("eye.show.order.amount.reality", orderInfoAfter.getActualAmount().longValue());
+                eyeRedisTemplate.decr("eye.show.order.total.reality", 1);
+                eyeRedisTemplate.incr("eye.show.order.amount.reality", orderInfoAfter.getActualAmount().longValue());
                 break;
             default:
         }
