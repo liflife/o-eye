@@ -13,8 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.lxf.eye.show.mapper")
 @ComponentScan({"com.lxf.eye.common.service","com.lxf.eye.show"})
 @EnableScheduling
-@PropertySource("conf.properties")
-@PropertySource("job.properties")
+@PropertySource("xxlmq.properties")
 public class OEyeShowApplication {
 
     public static void main(String[] args) {

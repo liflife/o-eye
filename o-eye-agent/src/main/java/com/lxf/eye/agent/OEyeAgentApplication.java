@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import java.net.InetSocketAddress;
@@ -15,6 +16,7 @@ import java.net.InetSocketAddress;
 @SpringBootApplication
 @MapperScan(basePackages = "com.lxf.o.eye.mapper")
 @ComponentScan({"com.lxf.eye.agent"})
+@PropertySource("xxlmq.properties")
 public class OEyeAgentApplication {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.lxf.eye.order.service;
+package com.lxf.eye.order.common;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

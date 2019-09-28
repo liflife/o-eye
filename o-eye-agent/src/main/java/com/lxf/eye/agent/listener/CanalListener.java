@@ -6,6 +6,8 @@ import com.alibaba.otter.canal.protocol.Message;
 import com.lxf.eye.agent.common.CanalMysqlEntry;
 import com.lxf.eye.agent.common.RabbitConfig;
 import com.lxf.eye.common.domain.RabbitMqQueueConfig;
+import com.xxl.mq.client.message.XxlMqMessage;
+import com.xxl.mq.client.producer.XxlMqProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -29,6 +31,8 @@ public class CanalListener {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    private String topic="canal";
+
     @PostConstruct
     public void listen() {
         canalConnector.connect();
@@ -50,6 +54,7 @@ public class CanalListener {
                 try {
                     canalMysqlEntries = parseEntry(message.getEntries());
                     canalMysqlEntries.stream().forEach(canalMysqlEntry -> {
+                        XxlMqProducer.produce(new XxlMqMessage(topic, canalMysqlEntry.toString()));
                         rabbitTemplate.convertAndSend(RabbitMqQueueConfig.STRING, canalMysqlEntry.toString());
                         logger.info("放入队列成功：{}",canalMysqlEntry.toString());
                     });
