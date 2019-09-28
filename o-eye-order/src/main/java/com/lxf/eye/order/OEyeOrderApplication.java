@@ -4,14 +4,13 @@ package com.lxf.eye.order;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.lxf.eye.order.mapper")
-@ComponentScan({"com.lxf.eye.common.service"})
+@ComponentScan({"com.lxf.eye.common.service","com.lxf.eye.order"})
 @EnableScheduling
 public class OEyeOrderApplication {
 
