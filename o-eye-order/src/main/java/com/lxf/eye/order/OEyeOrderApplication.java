@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.lxf.eye.order.mapper")
-@ComponentScan({"com.lxf.eye.common.service"})
+@ComponentScan({"com.lxf.eye.order","com.lxf.eye.common.service"})
 @EnableScheduling
 public class OEyeOrderApplication {
 

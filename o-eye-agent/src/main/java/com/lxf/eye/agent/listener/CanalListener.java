@@ -31,7 +31,7 @@ public class CanalListener {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    private String topic="canal";
+    private String topic="topic_1";
 
     @PostConstruct
     public void listen() {
@@ -58,6 +58,7 @@ public class CanalListener {
                         rabbitTemplate.convertAndSend(RabbitMqQueueConfig.STRING, canalMysqlEntry.toString());
                         logger.info("放入队列成功：{}",canalMysqlEntry.toString());
                     });
+
                     canalConnector.ack(batchId); // 提交确认
                 } catch (Exception e) {
                     canalConnector.rollback(batchId); // 处理失败, 回滚数据

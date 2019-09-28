@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-@MqConsumer(topic = "canal")
+@MqConsumer(topic = "topic_1")
 @Service
 public class XXLMqComsumer  implements IMqConsumer {
     private Logger logger = LoggerFactory.getLogger(XXLMqComsumer.class);

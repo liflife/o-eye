@@ -23,7 +23,7 @@ public class OrderTask {
     /**
      * 添加订单
      */
-    @Scheduled(cron = "0/20 * * * * ? ") // 间隔20秒执行
+    @Scheduled(cron = "0/10 * * * * ? ") // 间隔20秒执行
     public void addOrder() {
         OrderInfo newOrder = OrderRandomBuilder.getNewOrder();
         logger.info("create one order:{}",newOrder);

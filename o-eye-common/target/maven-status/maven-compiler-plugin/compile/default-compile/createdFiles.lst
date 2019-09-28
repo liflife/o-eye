@@ -1,4 +1,12 @@
-com\lxf\eye\common\domain\BeanUtil.class
-com\lxf\eye\common\domain\OrderStatusEnum.class
-com\lxf\eye\common\domain\OrderIndo.class
+com\lxf\eye\common\domain\api\OrderServiceDubbo.class
+com\lxf\eye\common\domain\OrderInfo.class
 com\lxf\eye\common\domain\CanalMysqlEntry.class
+com\lxf\eye\common\domain\OrderCategoryEnum.class
+com\lxf\eye\common\domain\OrderTypeEnum.class
+com\lxf\eye\common\domain\OrderSourceNoEnum.class
+com\lxf\eye\common\domain\User.class
+com\lxf\eye\common\domain\OrderStatusEnum.class
+com\lxf\eye\common\service\EyeRedisTemplate.class
+com\lxf\eye\common\domain\OrderRandomBuilder.class
+com\lxf\eye\common\domain\RabbitMqQueueConfig.class
+com\lxf\eye\common\domain\CommonUtil.class

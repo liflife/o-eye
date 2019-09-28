@@ -1,4 +1,12 @@
-D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\BeanUtil.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderRandomBuilder.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderTypeEnum.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderInfo.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderSourceNoEnum.java
 D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\CanalMysqlEntry.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\api\OrderServiceDubbo.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderCategoryEnum.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\User.java
 D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderStatusEnum.java
-D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\OrderIndo.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\service\EyeRedisTemplate.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\RabbitMqQueueConfig.java
+D:\project\o-eye\o-eye-common\src\main\java\com\lxf\eye\common\domain\CommonUtil.java

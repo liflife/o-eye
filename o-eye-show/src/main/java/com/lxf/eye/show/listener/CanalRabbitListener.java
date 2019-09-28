@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Date;
 
-@Component
-@RabbitListener(queues = RabbitMqQueueConfig.STRING)
+//@Component
+//@RabbitListener(queues = RabbitMqQueueConfig.STRING)
 public class CanalRabbitListener {
     private static final Logger logger = LoggerFactory.getLogger(CanalRabbitListener.class);
     @Autowired
