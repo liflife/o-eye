@@ -165,9 +165,15 @@
 			<version>2.0.2</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-mq-client</artifactId>
+            <version>1.2.2</version>
+            <scope>compile</scope>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

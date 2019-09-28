@@ -1,4 +1,4 @@
-package com.lxf.eye.common.service;
+package com.lxf.eye.order.common;
 
 import com.xxl.conf.core.spring.XxlConfFactory;
 import org.slf4j.Logger;
@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
 public class XxlConfConfig {
     private Logger logger = LoggerFactory.getLogger(XxlConfConfig.class);
 

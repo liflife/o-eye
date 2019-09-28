@@ -1,7 +1,7 @@
 package com.lxf.eye.order.controller;
 
-import com.alibaba.fastjson.JSON;
 
+import com.alibaba.fastjson.JSON;
 import com.lxf.eye.common.domain.OrderInfo;
 import com.lxf.eye.common.domain.OrderRandomBuilder;
 import com.lxf.eye.order.service.OrderService;
