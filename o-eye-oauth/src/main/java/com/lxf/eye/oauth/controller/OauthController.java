@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class OauthController {
     public static String accessUrl="https://github.com/login/oauth/access_token?";
-    public static String clientID="5f370d133a5f1874d01c";
-    public static String clientSecret="6805af9cf984387b3228acf7d63542efce35614f";
+    public static String clientID="****";
+    public static String clientSecret="****";
     public static String code="";
     @RequestMapping("/login")
     @ResponseBody
