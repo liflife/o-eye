@@ -22,6 +22,7 @@
         <module>o-eye-agent</module>
         <module>o-eye-show</module>
         <module>o-eye-common</module>
+        <module>oauth</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
